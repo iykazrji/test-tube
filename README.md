@@ -1,5 +1,6 @@
 # test-tube
-React + Redux Boilerplate
+
+React + Redux boilerplate with hot reloading and babel support.
 
 This boilerplate contains a React + Redux setup with Hot Reloading onboard and 
 a little demo app showing React and Redux in action.

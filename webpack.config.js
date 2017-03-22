@@ -18,7 +18,7 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        presets: ['react', 'es2015', 'stage-1']
+        presets: ['react', ['es2015', { 'loose': true }], 'stage-1']
       }
     }]
   },
@@ -31,5 +31,10 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
+  },
+  externals: {
+    env_config: JSON.stringify(process.env.ENV === 'production' 
+                                ? require('./env_config/config.prod.json')
+                                : require('./env_config/config.dev.json'))
   }
 };

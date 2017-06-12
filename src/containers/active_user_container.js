@@ -17,7 +17,7 @@ class activeUserContainer extends Component {
 				return (
 					<div>
 						<div className="firstname">
-							<h4>firstname:</h4>
+							<h4>first:</h4>
 							<span>{this.props.activeUser.firstname}</span>
 						</div>
 						<div className="lastname">

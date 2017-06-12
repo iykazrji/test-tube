@@ -12,29 +12,39 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['react-hot', 'jsx?harmony'], 
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', ['es2015', { 'loose': true }], 'stage-1']
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: [
+          {
+            loader: 'react-hot-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['react', ['es2015', { 'loose': true }], 'stage-1']
+            }
+          }
+        ],
+        exclude: /node_modules/ 
       }
-    }]
+    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    hot: true
   },
   externals: {
     env_config: JSON.stringify(process.env.ENV === 'production' 
                                 ? require('./env_config/config.prod.json')
                                 : require('./env_config/config.dev.json'))
   }
-};
+}
+
